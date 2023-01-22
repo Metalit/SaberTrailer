@@ -8,6 +8,7 @@
   "packageId": "com.beatgames.beatsaber",
   "packageVersion": "1.27.0_3631150051",
   "description": "Make simple but powerful changes to your saber trail",
+  "coverImage": "cover.png",
   "dependencies": [],
   "modFiles": [],
   "libraryFiles": [],
