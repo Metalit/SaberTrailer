@@ -1,14 +1,22 @@
 #include "main.hpp"
 #include "config.hpp"
 
-// #include "HMUI/Touchable.hpp"
-// #include "UnityEngine/GameObject.hpp"
+template<QuestUI::BeatSaberUI::HasTransform P>
+inline QuestUI::ColorSetting* AddConfigValueColorPickerFixed(P parent, ConfigUtils::ConfigValue<UnityEngine::Color>& configValue) {
+    auto object = ::QuestUI::BeatSaberUI::CreateColorPicker(parent->get_transform(), configValue.GetName(), configValue.GetValue(), nullptr, nullptr,
+        [&configValue](::UnityEngine::Color value) {
+            configValue.SetValue(value);
+        }
+    );
+    if(!configValue.GetHoverHint().empty())
+        QuestUI::BeatSaberUI::AddHoverHint(object, configValue.GetHoverHint());
+    return object;
+}
 
 void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToHierarchy, bool screenSystemEnabling) {
     if(!firstActivation)
         return;
 
-    // self->get_gameObject()->AddComponent<HMUI::Touchable*>();
     auto vertical = QuestUI::BeatSaberUI::CreateVerticalLayoutGroup(self);
     vertical->set_childControlHeight(false);
     vertical->set_childForceExpandHeight(false);
@@ -22,8 +30,8 @@ void DidActivate(HMUI::ViewController* self, bool firstActivation, bool addedToH
     AddConfigValueIncrementFloat(vertical, getConfig().Length, 1, 0.2, 0.2, 2);
     AddConfigValueToggle(vertical, getConfig().Rainbow);
     AddConfigValueToggle(vertical, getConfig().Colors);
-    AddConfigValueColorPicker(vertical, getConfig().LeftColor);
-    AddConfigValueColorPicker(vertical, getConfig().RightColor);
+    AddConfigValueColorPickerFixed(vertical, getConfig().LeftColor);
+    AddConfigValueColorPickerFixed(vertical, getConfig().RightColor);
 }
 
 using UnityEngine::Color;
