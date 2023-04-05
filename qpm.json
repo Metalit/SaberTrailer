@@ -4,7 +4,7 @@
   "info": {
     "name": "SaberTrailer",
     "id": "sabertrailer",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "url": null,
     "additionalData": {
       "overrideSoName": "libsabertrailer.so"
@@ -26,11 +26,6 @@
       "additionalData": {}
     },
     {
-      "id": "codegen",
-      "versionRange": "^0.32.0",
-      "additionalData": {}
-    },
-    {
       "id": "config-utils",
       "versionRange": "^1.0.2",
       "additionalData": {}
@@ -43,6 +38,11 @@
     {
       "id": "custom-types",
       "versionRange": "^0.15.22",
+      "additionalData": {}
+    },
+    {
+      "id": "codegen",
+      "versionRange": "^0.33.0",
       "additionalData": {}
     }
   ],
